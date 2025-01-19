@@ -8,7 +8,8 @@ test('検索', async ({ context, page }) => {
   await newTab.waitForLoadState("domcontentloaded");
   await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="12"]');
   await newTab.click('a[onclick*="submitPage(\'akiyaJyoukenRef\')"]');
-  const errorExists = await newTab.locator('li.error').isVisible({ timeout: 5000 });
+  await newTab.waitForSelector('li.error', { state: 'visible', timeout: 3000 });
+  const errorExists = await newTab.locator('li.error').isVisible();
   console.log(errorExists ? 'li.error が表示されています。' : 'li.error は表示されていません。');
   await newTab.screenshot({ path: 'screenshot.png', fullPage: true });
   console.log('スクリーンショットを取得しました: screenshot.png');
