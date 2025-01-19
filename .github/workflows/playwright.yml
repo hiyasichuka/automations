@@ -25,8 +25,8 @@ jobs:
 
       - name: Install dependencies and Playwright
         run: |
+          npm ci
           if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
-            npm ci
             npx playwright install --with-deps
           fi
 
