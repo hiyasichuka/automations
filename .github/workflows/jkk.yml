@@ -1,0 +1,31 @@
+name: Playwright Tests
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0,30 9-17 * * 1-5"
+jobs:
+  test:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - id: playwright-cache
+        name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies and Playwright
+        run: |
+          npm ci
+          if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
+            npx playwright install --with-deps
+          fi
+
+      - name: Run Playwright tests
+        run: npx playwright test jkk.spec.ts
