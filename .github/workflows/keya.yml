@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: keya
 on:
   workflow_dispatch:
   schedule:
@@ -28,4 +28,4 @@ jobs:
           fi
 
       - name: Run Playwright tests
-        run: npx playwright test keya.spec.ts
+        run: npx playwright test keya.spec.js
