@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: "0,30 9-17 * * 1-5" # 月-金の9:00～16:59まで1時間ごと
+    - cron: "0,30 9-17 * * 1-5"
 jobs:
   test:
     timeout-minutes: 5
@@ -25,8 +25,8 @@ jobs:
 
       - name: Install dependencies and Playwright
         run: |
-          npm ci
           if [ "${{ steps.playwright-cache.outputs.cache-hit }}" != "true" ]; then
+            npm ci
             npx playwright install --with-deps
           fi
 
