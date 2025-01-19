@@ -4,6 +4,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: "0 9-16/1 * * 1-5" # 月-金の9:00～16:59まで1時間ごと
+    - cron: "30 9-16/1 * * 1-5" # 月-金の9:30～16:29まで1時間ごと
 jobs:
   test:
     timeout-minutes: 5
