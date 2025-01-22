@@ -21,7 +21,7 @@ test('test', async ({ page }) => {
   await navigateAndClick('button', '検索');
   await navigateAndClick('link', 'さらに読み込む');
   // チェックボックス選択
-  const locations = ['羽根木公園', '砧中学校', '用賀中学校', '桜丘中学校'];
+  const locations = ['羽根木公園', '砧中学校', '用賀中学校', '桜丘中学校', '砧南中学校', '烏山中学校'];
   for (const location of locations) {
     const locator = page.getByRole('cell', { name: location }).locator('label');
     if (await locator.isVisible()) {
@@ -47,6 +47,24 @@ test('test', async ({ page }) => {
       throw new Error(`The text contains symbol: ${symbol}`);
     }    
   }
+
+  // １ヶ月後の予約を確認
+  const date = new Date();
+  const day = String(date.getDate()).padStart(2, '0');
+  await page.getByPlaceholder('/2/13').click();
+  await page.getByTitle('').click();
+  await page.getByRole('link', { name: day, exact: true }).click();
+  await navigateAndClick('button', '表示');
+
+  // 記号チェック
+  const bodyTexts2 = await page.locator('tbody').allInnerTexts();
+  const combinedText2 = bodyTexts2.join('\n');
+  for (const symbol of symbols) {
+    if (combinedText2.includes(symbol)) {
+      throw new Error(`The text contains symbol: ${symbol}`);
+    }    
+  }
+  console.log(combinedText2)
 
   console.log("空きコートなし");
 });
