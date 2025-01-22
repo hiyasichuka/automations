@@ -2,8 +2,8 @@ name: keya
 on:
   workflow_dispatch:
   schedule:
-    # JST午前11時58分に対応（UTCで午前2時58分）
-    - cron: "58 2 * * *"
+    # JST午前11時50分
+    - cron: "50 2 * * *"
 jobs:
   test:
     timeout-minutes: 5
