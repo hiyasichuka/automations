@@ -1,9 +1,11 @@
 import { test } from '@playwright/test';
 
-test('test', async ({ page }) => {
-  const baseUrl = 'https://setagaya.keyakinet.net';
-  const symbols = ['〇', '△'];
+const baseUrl = 'https://setagaya.keyakinet.net';
+const symbols = ['〇', '△'];
+const locations = ['羽根木公園', '砧中学校', '用賀中学校', '桜丘中学校', '砧南中学校', '烏山中学校'];
+const conditions = ['土', /^日$/, '祝', 'ヶ月'];
 
+test('test', async ({ page }) => {
   const navigateAndClick = async (role, name, exact = false) => {
     const locator = exact 
       ? page.getByText(name, { exact: true }) 
@@ -35,7 +37,6 @@ test('test', async ({ page }) => {
   await navigateAndClick('button', '検索');
   await navigateAndClick('link', 'さらに読み込む');
 
-  const locations = ['羽根木公園', '砧中学校', '用賀中学校', '桜丘中学校', '砧南中学校', '烏山中学校'];
   for (const location of locations) {
     const locator = page.getByRole('cell', { name: location }).locator('label');
     if (await locator.isVisible()) {
@@ -46,7 +47,6 @@ test('test', async ({ page }) => {
 
   await page.goto(`${baseUrl}/Web/Yoyaku/WgR_ShisetsubetsuAkiJoukyou`);
   await navigateAndClick('button', 'その他の条件で絞り込む');
-  const conditions = ['土', /^日$/, '祝', 'ヶ月'];
   await selectConditions(conditions);
   await navigateAndClick('button', '表示');
 
