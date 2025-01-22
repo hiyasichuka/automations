@@ -45,6 +45,8 @@ test('test', async ({ page }) => {
   for (const symbol of symbols) {
     if (combinedText.includes(symbol)) {
       throw new Error(`The text contains symbol: ${symbol}`);
-    }
+    }    
   }
+
+  console.log("空きコートなし");
 });
