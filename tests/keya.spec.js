@@ -14,6 +14,7 @@ test('test', async ({ page }) => {
   };
 
   const checkSymbols = async () => {
+    await page.waitForSelector('tbody'); // tbodyが表示されるまで待機
     const bodyTexts = await page.locator('tbody').allInnerTexts();
     const combinedText = bodyTexts.join('\n');
     for (const symbol of symbols) {
@@ -62,4 +63,4 @@ test('test', async ({ page }) => {
   await checkSymbols();
 
   console.log("空きコートなし");
-});
+}, { timeout: 60000 }); // タイムアウトを60秒に設定
