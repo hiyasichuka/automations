@@ -5,6 +5,10 @@ const symbols = ['〇', '△'];
 const locations = ['羽根木公園', '砧中学校', '用賀中学校', '桜丘中学校', '砧南中学校', '烏山中学校'];
 const conditions = ['土', /^日$/, '祝', 'ヶ月'];
 
+test.beforeAll(async () => {
+  test.setTimeout(60000);
+});
+
 test('test', async ({ page }) => {
   const navigateAndClick = async (role, name, exact = false) => {
     const locator = exact 
@@ -63,4 +67,4 @@ test('test', async ({ page }) => {
   await checkSymbols();
 
   console.log("空きコートなし");
-}, { timeout: 60000 }); // タイムアウトを60秒に設定
+});
