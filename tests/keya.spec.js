@@ -2,14 +2,11 @@ import { test } from '@playwright/test';
 
 const baseUrl = 'https://setagaya.keyakinet.net';
 const symbols = ['〇', '△'];
-const locations = ['羽根木公園', '砧中学校', '用賀中学校', '桜丘中学校', '砧南中学校', '烏山中学校'];
+const locations = ['羽根木公園', '砧中学校', '用賀中学校', '桜丘中学校', '砧南中学校'];
 const conditions = ['土', /^日$/, '祝', 'ヶ月'];
 
-test.beforeAll(async () => {
-  test.setTimeout(60000);
-});
-
 test('test', async ({ page }) => {
+  test.slow();
   const navigateAndClick = async (role, name, exact = false) => {
     const locator = exact 
       ? page.getByText(name, { exact: true }) 
