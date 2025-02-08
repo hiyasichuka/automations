@@ -34,7 +34,7 @@ jobs:
 
       - name: Upload Playwright error screenshots
         uses: actions/upload-artifact@v4
-        if: failure()
         with:
           name: playwright-error-screenshots
           path: screenshot-error-*.png
+          retention-days: 1
