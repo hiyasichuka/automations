@@ -25,7 +25,6 @@ test("test", async ({ page }) => {
     await page.waitForSelector("tbody"); // tbodyが表示されるまで待機
     const bodyTexts = await page.locator("tbody").allInnerTexts();
     const combinedText = bodyTexts.join("\n");
-    await page.screenshot({ path: screenshotPath, fullPage: true }) // TEST
     for (const symbol of symbols) {
       if (combinedText.includes(symbol)) {
         await page.screenshot({ path: screenshotPath, fullPage: true })
