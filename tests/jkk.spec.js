@@ -1,5 +1,7 @@
 import { test } from "@playwright/test";
 
+const screenshotPath = "./jkk.png";
+
 test("検索", async ({ context, page }) => {
   const newTabPromise = context.waitForEvent("page");
   await page.goto(
@@ -25,4 +27,8 @@ test("検索", async ({ context, page }) => {
   await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
   const errorExists = await newTab.locator("li.error").isVisible();
   console.log(errorExists ? "見つからず" : "見つかった");
+  if (!errorExists) {
+    await page.screenshot({ path: screenshotPath, fullPage: true });
+    throw new Error("見つかりました");
+  }
 });

@@ -32,9 +32,9 @@ jobs:
         run: npx playwright test keya.spec.js
         continue-on-error: true # 例外発生時も後続のステップを実行
 
-      - name: Upload Playwright error screenshots
+      - name: Upload Playwright screenshots
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-error-screenshots
-          path: screenshot-error-*.png
+          name: playwright-screenshots
+          path: keya.png
           retention-days: 1

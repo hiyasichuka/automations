@@ -10,6 +10,7 @@ const locations = [
   "砧南中学校",
 ];
 const conditions = ["土", /^日$/, "祝", "ヶ月"];
+const screenshotPath = "./keya.png";
 
 test("test", async ({ page }) => {
   test.slow();
