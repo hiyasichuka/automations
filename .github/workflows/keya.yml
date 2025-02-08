@@ -38,3 +38,4 @@ jobs:
           name: playwright-screenshots
           path: screenshots/keya.png
           retention-days: 2
+          compression-level: 0

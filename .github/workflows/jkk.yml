@@ -30,11 +30,3 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test jkk.spec
-
-      - name: Upload Playwright screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-screenshots
-          path: ./screenshots/
-          retention-days: 2
-          compression-level: 0
