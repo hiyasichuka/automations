@@ -37,3 +37,4 @@ jobs:
           name: playwright-screenshots
           path: ./screenshots/
           retention-days: 2
+          compression-level: 0
