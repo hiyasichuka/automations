@@ -34,10 +34,11 @@ jobs:
 
       - name: Commit and Push Screenshots
         if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # ✅ GitHub の認証情報を設定
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main  # **競合を避けるため、最新のリモートを取得**
           git add screenshots/*.png
           git commit -m "🔍 Upload Playwright screenshots"
-          git push origin main
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git main
