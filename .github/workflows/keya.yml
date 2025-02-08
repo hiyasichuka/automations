@@ -36,5 +36,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-screenshots
-          path: ./screenshots/
+          path: screenshots/keya.png
           retention-days: 2
