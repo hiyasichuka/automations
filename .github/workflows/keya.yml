@@ -2,8 +2,8 @@ name: keya
 on:
   workflow_dispatch:
   schedule:
-    # JST午前11時50分
-    - cron: "50 2 * * *"
+    # JST午前11時30分
+    - cron: "30 2 * * *"
 jobs:
   test:
     timeout-minutes: 5
@@ -30,3 +30,11 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test keya.spec.js
+        continue-on-error: true # 例外発生時も後続のステップを実行
+
+      - name: Upload Playwright error screenshots
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: playwright-error-screenshots
+          path: screenshot-error-*.png

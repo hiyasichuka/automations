@@ -4,6 +4,7 @@ const baseUrl = 'https://setagaya.keyakinet.net';
 const symbols = ['〇', '△'];
 const locations = ['羽根木公園', '砧中学校', '用賀中学校', '桜丘中学校', '砧南中学校'];
 const conditions = ['土', /^日$/, '祝', 'ヶ月'];
+const screenshotPath = `screenshot-error-${Date.now()}.png`;
 
 test('test', async ({ page }) => {
   test.slow();
@@ -20,6 +21,7 @@ test('test', async ({ page }) => {
     const combinedText = bodyTexts.join('\n');
     for (const symbol of symbols) {
       if (combinedText.includes(symbol)) {
+        await page.screenshot({ path: screenshotPath, fullPage: true })
         throw new Error(`The text contains symbol: ${symbol}`);
       }
     }
@@ -55,7 +57,7 @@ test('test', async ({ page }) => {
   await checkSymbols();
 
   const date = new Date();
-  const day = String(date.getDate()).padStart(2, '0');
+  const day = date.getDate();
   await page.getByPlaceholder('/2/13').click();
   await page.getByTitle('').click();
   await page.getByRole('link', { name: day, exact: true }).click();
