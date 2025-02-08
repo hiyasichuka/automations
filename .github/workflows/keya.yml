@@ -32,10 +32,12 @@ jobs:
         run: npx playwright test keya.spec.js
         continue-on-error: true # 例外発生時も後続のステップを実行
 
-      - name: Upload Playwright screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-screenshots
-          path: screenshots/keya.png
-          retention-days: 2
-          compression-level: 0
+      - name: Commit and Push Screenshots
+        if: always()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git pull origin main  # **競合を避けるため、最新のリモートを取得**
+          git add screenshots/*.png
+          git commit -m "🔍 Upload Playwright screenshots"
+          git push origin main
