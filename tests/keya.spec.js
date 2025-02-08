@@ -29,7 +29,7 @@ test("test", async ({ page }) => {
     for (const symbol of symbols) {
       if (combinedText.includes(symbol)) {
         await page.screenshot({ path: screenshotPath, fullPage: true })
-        throw new Error(`The text contains symbol: ${symbol}`);
+        throw new Error(`Tag: ${tag} ,The text contains symbol: ${symbol}`);
       }
     }
     return combinedText;
