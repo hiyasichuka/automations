@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 
-const screenshotPath = "./jkk.png";
+const screenshotPath = "./screenshots/jkk.png";
 
 test("検索", async ({ context, page }) => {
   const newTabPromise = context.waitForEvent("page");

@@ -1,6 +1,7 @@
 import { test } from "@playwright/test";
 
 const baseUrl = "https://setagaya.keyakinet.net";
+const screenshotPath = "./screenshots/keya.png";
 const symbols = ["〇", "△"];
 const locations = [
   "羽根木公園",
@@ -10,7 +11,6 @@ const locations = [
   "砧南中学校",
 ];
 const conditions = ["土", /^日$/, "祝", "ヶ月"];
-const screenshotPath = "./keya.png";
 
 test("test", async ({ page }) => {
   test.slow();
@@ -60,16 +60,12 @@ test("test", async ({ page }) => {
   await selectConditions(conditions);
   await navigateAndClick("button", "表示");
 
-  await checkSymbols("直近1ヶ月");
-
   const date = new Date();
   const day = date.getDate();
   await page.getByPlaceholder('/2/13').click();
   await page.getByTitle('').click();
   await page.getByRole('link', { name: day, exact: true }).click();
   await navigateAndClick('button', '表示');
-
-  await checkSymbols("1ヶ月後");
 
   console.log("空きコートなし");
 });
