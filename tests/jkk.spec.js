@@ -12,9 +12,8 @@ test("検索", async ({ context, page }) => {
   await newTab.waitForLoadState("domcontentloaded");
 
   // ward
-  await newTab.check(
-    'input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="12"]'
-  );
+  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.allCheck"]');
+
   // house layout
   await newTab.check(
     'input[type="checkbox"][name="akiyaInitRM.akiyaRefM.madoris"][value="2"]'
@@ -22,6 +21,9 @@ test("検索", async ({ context, page }) => {
   await newTab.check(
     'input[type="checkbox"][name="akiyaInitRM.akiyaRefM.madoris"][value="3"]'
   );
+  
+  // price
+  await newTab.locator('select[name="akiyaInitRM\\.akiyaRefM\\.yachinFrom"]').selectOption('140000');
 
   await newTab.click("a[onclick*=\"submitPage('akiyaJyoukenRef')\"]");
   await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
