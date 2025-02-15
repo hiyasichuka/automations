@@ -4,7 +4,7 @@ const baseUrl = "https://setagaya.keyakinet.net";
 const screenshotPath = "./screenshots/keya.png";
 const symbols = ["〇", "△"];
 const locations = [
-  // "羽根木公園",
+  "羽根木公園",
   "用賀中学校",
   "桜丘中学校",
   "芦花中学校",
