@@ -3,6 +3,8 @@ import { test } from "@playwright/test";
 const screenshotPath = "./screenshots/jkk.png";
 
 test("検索", async ({ context, page }) => {
+  throw new Error("TEST");
+
   const newTabPromise = context.waitForEvent("page");
   await page.goto(
     "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyoukenStartInit"
