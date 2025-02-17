@@ -12,8 +12,14 @@ test("検索", async ({ context, page }) => {
   await newTab.waitForLoadState("domcontentloaded");
 
   // ward
-  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.allCheck"]');
-
+//  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.allCheck"]');
+  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="15"]');
+  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="12"]');
+  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="11"]');
+  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="05"]');
+  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="09"]');
+  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="10"]');
+  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="14"]');
   // house layout
   await newTab.check(
     'input[type="checkbox"][name="akiyaInitRM.akiyaRefM.madoris"][value="2"]'
