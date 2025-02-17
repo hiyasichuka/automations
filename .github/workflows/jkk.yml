@@ -2,8 +2,8 @@ name: jkk
 on:
   workflow_dispatch:
   schedule:
-    # JST午前9時〜午後5時の毎時0分・30分（月〜金）
-    - cron: "0,30 0-8 * * 1-5"
+    # JST午前9時〜午後6時の毎時0分・30分（月〜金）
+    - cron: "0,30 0-9 * * 1-5"
 jobs:
   test:
     timeout-minutes: 5
