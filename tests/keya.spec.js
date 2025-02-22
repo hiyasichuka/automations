@@ -8,6 +8,7 @@ const locations = [
   "用賀中学校",
   "桜丘中学校",
   "芦花中学校",
+  "砧中学校",
 ];
 const conditions = ["土", /^日$/, "祝", "ヶ月"];
 
@@ -51,9 +52,9 @@ test("test", async ({ page }) => {
     await page.getByRole("cell", { name: location }).locator("label").click();
     await navigateAndClick("link", "次へ進む");
 
-    if(firstFlag){
+    if (firstFlag) {
       await navigateAndClick("button", "その他の条件で絞り込む");
-      await selectConditions(conditions);  
+      await selectConditions(conditions);
       firstFlag = false
     }
     await navigateAndClick("button", "表示");
@@ -68,7 +69,7 @@ test("test", async ({ page }) => {
     await page.getByRole("cell", { name: location }).locator("label").click();
     await navigateAndClick("link", "次へ進む");
 
-    if(firstFlag){
+    if (firstFlag) {
       const date = new Date();
       const day = date.getDate();
       await page.getByPlaceholder('/2/13').click();
