@@ -4,6 +4,7 @@ on:
   schedule:
     # JST午前9時〜午後6時の毎時0分・30分（月〜金）
     - cron: "0,30 0-9 * * 1-5"
+    - cron: "0 11 * * 0,6"
 jobs:
   test:
     timeout-minutes: 5
