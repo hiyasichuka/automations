@@ -8,6 +8,9 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
+      - name: Set Start Time (JST)
+        run: echo "START_TIME=$(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
@@ -29,3 +32,11 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test keya.spec
+
+      - name: Set End Time (JST) and Output Times
+        run: |
+          END_TIME=$(TZ='Asia/Tokyo' date '+%Y-%m-%d %H:%M:%S')
+          echo "START_TIME: $START_TIME"
+          echo "END_TIME: $END_TIME"
+        env:
+          START_TIME: ${{ env.START_TIME }}
