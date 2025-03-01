@@ -2,7 +2,7 @@ name: keya
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 0 * * *"
+    - cron: "0 0 * * *"
 jobs:
   test:
     timeout-minutes: 5
