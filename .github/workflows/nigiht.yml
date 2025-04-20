@@ -1,4 +1,4 @@
-name: keya
+name: keya_night
 on:
   workflow_dispatch:
   schedule:
