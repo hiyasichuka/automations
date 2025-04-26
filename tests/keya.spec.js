@@ -2,12 +2,11 @@ import { test } from "@playwright/test";
 
 const baseUrl = "https://setagaya.keyakinet.net";
 const screenshotPath = "./screenshots/keya.png";
-const symbols = ["〇"];
+const symbols = ["△"];
 const locations = [
   "羽根木公園",
   "用賀中学校",
-  "桜丘中学校",
-  "芦花中学校",
+  "玉川野毛町公園",
 ];
 const conditions = ["土", /^日$/, "祝", "ヶ月"];
 
