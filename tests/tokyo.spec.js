@@ -4,11 +4,11 @@ test('test', async ({ page }) => {
   test.slow();
 
   const facilities = [
-    { name: '日比谷', value: '1000' },
+    // { name: '日比谷', value: '1000' },
     { name: '芝', value: '1010' },
     { name: '高井戸', value: '1175' },
-    { name: '善福寺', value: '1180' },
-    //{ name: '祖師谷', value: '1070' },
+    // { name: '善福寺', value: '1180' },
+    { name: '祖師谷', value: '1070' },
   ];
 
   await page.goto('https://kouen.sports.metro.tokyo.lg.jp/web/index.jsp');
@@ -42,14 +42,14 @@ async function selectFacility(page, facilityValue) {
 
 // 空きコートを探す共通処理
 async function searchCourt(page) {
-  const maxTries = 3;
+  const maxTries = 2;
   let tries = 0;
 
   while (tries < maxTries) {
     const locator = page.getByRole('img', { name: '空き' });
 
     try {
-      await locator.waitFor({ timeout: 3000 });
+      await locator.waitFor({ timeout: 5000 });
       await locator.click();
       return true;
     } catch (e) {
