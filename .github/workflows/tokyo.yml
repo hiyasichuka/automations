@@ -3,10 +3,10 @@ name: tokyo
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0,3,8,11 * * *"
+    - cron: "0 0,3,8 * * *"
 jobs:
   test:
-    timeout-minutes: 5
+    timeout-minutes: 7
     runs-on: ubuntu-latest
     steps:
       - name: Set Start Time (JST)
