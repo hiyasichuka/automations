@@ -5,7 +5,7 @@ test('test', async ({ page }) => {
 
   const facilities = [
     // { name: '日比谷', value: '1000' },
-    { name: '芝', value: '1010' },
+    // { name: '芝', value: '1010' },
     { name: '高井戸', value: '1175' },
     // { name: '善福寺', value: '1180' },
     { name: '祖師谷', value: '1070' },
