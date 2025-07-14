@@ -31,7 +31,9 @@ jobs:
           fi
 
       - name: Run Playwright tests
-        run: npx playwright test keya.spec
+        run: |
+          npx playwright test keya.spec
+          npx playwright test night.spec
 
       - name: Set End Time (JST) and Output Times
         run: |
