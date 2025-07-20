@@ -12,16 +12,16 @@ test("検索", async ({ context, page }) => {
   await newTab.waitForLoadState("domcontentloaded");
 
   // ward
-  //  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.allCheck"]');
-  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="04"]'); // 新宿区
-  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="05"]'); // 文京区 
+  // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.allCheck"]');
+  // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="04"]'); // 新宿区
+  // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="05"]'); // 文京区 
   // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="09"]'); // 品川区
-  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="10"]'); // 目黒区
+  // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="10"]'); // 目黒区
   // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="11"]'); // 大田区
   await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="12"]'); // 世田谷区
   await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="13"]'); // 渋谷区
   // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="14"]'); // 中野区
-  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="15"]'); // 杉並区
+  // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="15"]'); // 杉並区
   // house layout
   await newTab.check(
     'input[type="checkbox"][name="akiyaInitRM.akiyaRefM.madoris"][value="2"]'
