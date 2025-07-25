@@ -31,7 +31,7 @@ test("検索", async ({ context, page }) => {
   );
 
   // price
-  await newTab.locator('select[name="akiyaInitRM\\.akiyaRefM\\.yachinFrom"]').selectOption('160000');
+  await newTab.locator('select[name="akiyaInitRM\\.akiyaRefM\\.yachinFrom"]').selectOption('140000');
 
   await newTab.click("a[onclick*=\"submitPage('akiyaJyoukenRef')\"]");
   await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
