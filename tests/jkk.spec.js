@@ -19,7 +19,7 @@ test("検索", async ({ context, page }) => {
   // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="10"]'); // 目黒区
   // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="11"]'); // 大田区
   await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="12"]'); // 世田谷区
-  await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="13"]'); // 渋谷区
+  // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="13"]'); // 渋谷区
   // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="14"]'); // 中野区
   // await newTab.check('input[type="checkbox"][name="akiyaInitRM.akiyaRefM.checks"][value="15"]'); // 杉並区
   // house layout
@@ -31,7 +31,7 @@ test("検索", async ({ context, page }) => {
   );
 
   // price
-  await newTab.locator('select[name="akiyaInitRM\\.akiyaRefM\\.yachinFrom"]').selectOption('140000');
+  await newTab.locator('select[name="akiyaInitRM\\.akiyaRefM\\.yachinFrom"]').selectOption('160000');
 
   await newTab.click("a[onclick*=\"submitPage('akiyaJyoukenRef')\"]");
   await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
