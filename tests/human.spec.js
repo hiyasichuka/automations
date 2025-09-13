@@ -20,7 +20,6 @@ async function loginIfNeeded(page) {
     await page.locator('#userID').fill(user);
     await page.locator('#passWord').fill(pass);
     await page.getByRole('link', { name: 'ログイン' }).click();
-
 }
 
 async function clickByText(page, role, name, exact = false) {
@@ -40,14 +39,13 @@ async function selectConditions(page, conditions) {
         await label.first().click();
     }
 }
-
 test('世田谷施設検索', async ({ page }) => {
     test.slow();
 
     await page.goto(`${BASE}/Web/Home/WgR_ModeSelect`, { waitUntil: 'domcontentloaded' });
     await clickByText(page, 'button', 'ログイン');
 
-    await loginIfNeeded(page).catch(() => { });
+    await loginIfNeeded(page).catch(() => { /* login error intentionally ignored */ });
 
     await clickByText(page, 'link', '使用目的から探す');
     await clickByText(page, 'text', '屋外スポーツ', true);
