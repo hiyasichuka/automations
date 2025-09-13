@@ -1,4 +1,3 @@
 #!/bin/bash
-set -e
-TEST_FILE="tests/human.spec.js"
-npx playwright test "$TEST_FILE" --headed
+set -euo pipefail
+npx playwright test tests/human.spec.js --headed

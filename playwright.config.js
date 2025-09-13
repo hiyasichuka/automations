@@ -1,27 +1,26 @@
-// @ts-check
-import { defineConfig, devices } from '@playwright/test';
+// playwright.config.js (ESM)
+import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
-  use: {
-    trace: 'on-first-retry',
-  },
-
+  fullyParallel: true,
   projects: [
+    {
+      name: 'setup',
+      testMatch: /auth\.setup\.spec\.js/,
+      use: {
+        headless: false,
+      },
+    },
     {
       name: 'chromium',
       use: {
-        ...devices['Desktop Chrome'],
         headless: false,
-        deviceScaleFactor: undefined,
-        viewport: null,
-        launchOptions: { args: ['--window-size=1920,1080'] },
+        storageState: 'auth.json',
+        viewport: { width: 1920, height: 1080 },
       },
+      dependencies: ['setup'],
     },
   ],
 });

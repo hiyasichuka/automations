@@ -1,4 +1,3 @@
-// tests/human.spec.js（CommonJS版）
 const { test, expect } = require('@playwright/test');
 const dotenv = require('dotenv');
 
@@ -6,8 +5,8 @@ dotenv.config();
 
 const BASE = process.env.KEYAKI_BASE_URL ?? 'https://setagaya.keyakinet.net';
 
-const LOCATIONS = ['羽根木公園', '用賀中学校', '玉川野毛町公園', '総合運動場', '大蔵第二運動場',];
-const CONDITIONS = ['土', /^日$/, '祝', 'ヶ月'];
+const LOCATIONS = ['用賀中学校', '総合運動場', '大蔵第二運動場'];
+const CONDITIONS = ["夜間", "ヶ月"];
 
 async function clickByText(page, role, name, exact = false) {
     if (role === 'text') return page.getByText(name, { exact }).click();
@@ -15,7 +14,6 @@ async function clickByText(page, role, name, exact = false) {
     if (await loc.first().isVisible().catch(() => false)) return loc.first().click();
     return page.locator(`:text("${name}")`).first().click();
 }
-
 
 async function selectConditions(page, conditions) {
     for (const c of conditions) {
@@ -26,7 +24,7 @@ async function selectConditions(page, conditions) {
         await label.first().click();
     }
 }
-test('世田谷施設検索', async ({ page }) => {
+test('世田谷施設検索(夜間)', async ({ page }) => {
     test.slow();
 
     await page.goto(`${BASE}`, { waitUntil: 'domcontentloaded' });
