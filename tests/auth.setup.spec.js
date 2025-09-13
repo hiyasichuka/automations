@@ -18,7 +18,5 @@ test('auth setup: login once and save storage', async ({ page }) => {
     await page.locator('#userID').fill(process.env.KEYAKI_USERNAME);
     await page.locator('#passWord').fill(process.env.KEYAKI_PASSWORD);
     await page.getByRole('link', { name: 'ログイン' }).click();
-
-    // セッション保存（以降のテストで使う）
     await page.context().storageState({ path: 'auth.json' });
 });
