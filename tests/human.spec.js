@@ -1,11 +1,10 @@
-// tests/human.spec.js（CommonJS版）
+const { login } = require('./login');
 const { test, expect } = require('@playwright/test');
 const dotenv = require('dotenv');
 
 dotenv.config();
 
 const BASE = process.env.KEYAKI_BASE_URL ?? 'https://setagaya.keyakinet.net';
-
 const LOCATIONS = ['羽根木公園', '用賀中学校', '玉川野毛町公園', '総合運動場', '大蔵第二運動場',];
 const CONDITIONS = ['土', /^日$/, '祝', 'ヶ月'];
 
@@ -29,7 +28,7 @@ async function selectConditions(page, conditions) {
 test('世田谷施設検索', async ({ page }) => {
     test.slow();
 
-    await page.goto(`${BASE}`, { waitUntil: 'domcontentloaded' });
+    await login(page, BASE);
     await clickByText(page, 'link', '使用目的から探す');
     await clickByText(page, 'text', '屋外スポーツ', true);
     await clickByText(page, 'text', 'テニス', true);
