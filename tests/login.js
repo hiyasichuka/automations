@@ -1,6 +1,4 @@
-const { test, expect } = require('@playwright/test');
-require('dotenv').config();
-const BASE = process.env.KEYAKI_BASE_URL ?? 'https://setagaya.keyakinet.net';
+const { expect } = require('@playwright/test');
 
 async function clickByText(page, role, name, exact = false) {
     if (role === 'text') return page.getByText(name, { exact }).click();
@@ -9,14 +7,13 @@ async function clickByText(page, role, name, exact = false) {
     return page.locator(`:text("${name}")`).first().click();
 }
 
-
-test('auth setup: login once and save storage', async ({ page }) => {
-    await page.goto(`${BASE}`, { waitUntil: 'domcontentloaded' });
+async function login(page, baseUrl) {
+    await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
     await clickByText(page, 'button', 'ログイン');
-
     await expect(page.locator('#userID')).toBeVisible({ timeout: 10000 });
     await page.locator('#userID').fill(process.env.KEYAKI_USERNAME);
     await page.locator('#passWord').fill(process.env.KEYAKI_PASSWORD);
     await page.getByRole('link', { name: 'ログイン' }).click();
-    await page.context().storageState({ path: 'auth.json' });
-});
+}
+
+module.exports = { login };
