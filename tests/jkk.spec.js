@@ -1,13 +1,12 @@
 import { test } from "@playwright/test";
+import { notifyLineBroadcast } from "./notify";
 test.use({ headless: true });
 
-const screenshotPath = "./screenshots/jkk.png";
 
 test("検索", async ({ context, page }) => {
+  const url = "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyoukenStartInit";
   const newTabPromise = context.waitForEvent("page");
-  await page.goto(
-    "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyoukenStartInit"
-  );
+  await page.goto(url);
   await page.click('a[onclick*="submitNext"]');
   const newTab = await newTabPromise;
   await newTab.waitForLoadState("domcontentloaded");
@@ -37,9 +36,8 @@ test("検索", async ({ context, page }) => {
   await newTab.click("a[onclick*=\"submitPage('akiyaJyoukenRef')\"]");
   await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
   const errorExists = await newTab.locator("li.error").isVisible();
-  console.log(errorExists ? "見つからず" : "見つかった");
+
   if (!errorExists) {
-    await page.screenshot({ path: screenshotPath, fullPage: true });
-    throw new Error("見つかりました");
+    await notifyLineBroadcast(`条件に合う結果を検知しました。\n${url}`);
   }
 });
