@@ -4,10 +4,9 @@ test.use({ headless: true });
 
 
 test("検索", async ({ context, page }) => {
+  const url = "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyoukenStartInit";
   const newTabPromise = context.waitForEvent("page");
-  await page.goto(
-    "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyoukenStartInit"
-  );
+  await page.goto(url);
   await page.click('a[onclick*="submitNext"]');
   const newTab = await newTabPromise;
   await newTab.waitForLoadState("domcontentloaded");
@@ -41,7 +40,6 @@ test("検索", async ({ context, page }) => {
   await notifyLineBroadcast(`test通知です。\n${url}`); // TODO: test削除
 
   if (!errorExists) {
-    const url = "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyoukenStartInit";
     await notifyLineBroadcast(`条件に合う結果を検知しました。\n${url}`);
   }
 });
