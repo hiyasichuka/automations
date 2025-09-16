@@ -37,8 +37,6 @@ test("検索", async ({ context, page }) => {
   await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
   const errorExists = await newTab.locator("li.error").isVisible();
 
-  await notifyLineBroadcast(`test通知です。\n${url}`); // TODO: test削除
-
   if (!errorExists) {
     await notifyLineBroadcast(`条件に合う結果を検知しました。\n${url}`);
   }
