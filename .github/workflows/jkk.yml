@@ -34,7 +34,10 @@ jobs:
           fi
 
       - name: Run Playwright tests
-        run: npx playwright test jkk.spec
+        env:
+          LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
+        run: |
+          npx playwright test jkk.spec
 
       - name: Set End Time (JST) and Output Times
         run: |
@@ -43,22 +46,3 @@ jobs:
           echo "END_TIME: $END_TIME"
         env:
           START_TIME: ${{ env.START_TIME }}
-
-  notify:
-    if: failure()
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send LINE notification on failure
-        run: |
-          curl -X POST https://api.line.me/v2/bot/message/broadcast \
-          -H 'Content-Type: application/json' \
-          -H 'Authorization: Bearer ${{ secrets.LINE_ACCESS_TOKEN }}' \
-          -d '{
-                "messages":[
-                  {
-                    "type":"text",
-                    "text":"https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyoukenStartInit"
-                  }
-                ]
-              }'

@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
+import { notifyLineBroadcast } from "./notify";
 test.use({ headless: true });
 
-const screenshotPath = "./screenshots/jkk.png";
 
 test("検索", async ({ context, page }) => {
   const newTabPromise = context.waitForEvent("page");
@@ -37,9 +37,11 @@ test("検索", async ({ context, page }) => {
   await newTab.click("a[onclick*=\"submitPage('akiyaJyoukenRef')\"]");
   await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
   const errorExists = await newTab.locator("li.error").isVisible();
-  console.log(errorExists ? "見つからず" : "見つかった");
+
+  await notifyLineBroadcast(`test通知です。\n${url}`); // TODO: test削除
+
   if (!errorExists) {
-    await page.screenshot({ path: screenshotPath, fullPage: true });
-    throw new Error("見つかりました");
+    const url = "https://jhomes.to-kousya.or.jp/search/jkknet/service/akiyaJyoukenStartInit";
+    await notifyLineBroadcast(`条件に合う結果を検知しました。\n${url}`);
   }
 });
