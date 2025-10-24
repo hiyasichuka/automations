@@ -34,10 +34,17 @@ test("検索", async ({ context, page }) => {
   await newTab.locator('select[name="akiyaInitRM\\.akiyaRefM\\.yachinFrom"]').selectOption('160000');
 
   await newTab.click("a[onclick*=\"submitPage('akiyaJyoukenRef')\"]");
-  await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
-  const errorExists = await newTab.locator("li.error").isVisible();
+
+  let errorExists = false;
+  try {
+    await newTab.waitForSelector("li.error", { state: "visible", timeout: 3000 });
+    errorExists = true;
+  } catch {
+    errorExists = false;
+  }
 
   if (!errorExists) {
+    console.log("条件に合う結果を検知しました。");
     await notifyLineBroadcast(`条件に合う結果を検知しました。\n${url}`);
   }
 });
