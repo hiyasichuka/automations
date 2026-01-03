@@ -45,6 +45,6 @@ test("検索", async ({ context, page }) => {
 
   if (!errorExists) {
     console.log("条件に合う結果を検知しました。");
-    await notifyLineBroadcast(`条件に合う物件が見つかりました！\n募集が締め切る前に早めに確認しましょう。\n${url}`);
+    await notifyLineBroadcast(`条件に合う物件が見つかりました！\n※人気物件はすぐ受付終了するため、お早めにお手続きください。\n${url}`);
   }
 });
